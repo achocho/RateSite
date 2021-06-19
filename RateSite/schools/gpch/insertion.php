@@ -107,25 +107,25 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
        $sql="Update schools Set sub1='$currRate,$sub1[1],$sub1[2],$sub1[3],$sub1[4],' Where name='$name'";
         $conn->query($sql);
    }
-        if($S1==2)
+       else if($S1==2)
    {
        $currRate=1+$sub1[1];
        $sql="Update schools Set sub1='$sub1[0],$currRate,$sub1[2],$sub1[3],$sub1[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S1==3)
+     else if($S1==3)
    {
        $currRate=1+$sub1[2];
        $sql="Update schools Set sub1='$sub1[0],$sub1[1],$currRate,$sub1[3],$sub1[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S1==4)
+     else if($S1==4)
    {
        $currRate=1+$sub1[3];
        $sql="Update schools Set sub1='$sub1[0],$sub1[1],$sub1[2],$currRate,$sub1[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S1==5)
+     else if($S1==5)
    {
        $currRate=1+$sub1[4];
        $sql="Update schools Set sub1='$sub1[0],$sub1[1],$sub1[2],$sub1[3],$currRate,' Where name='$name'";
@@ -138,25 +138,25 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
        $sql="Update schools Set sub2='$currRate,$sub2[1],$sub2[2],$sub2[3],$sub2[4],' Where name='$name'";
         $conn->query($sql);
    }
-        if($S2==2)
+       else if($S2==2)
    {
        $currRate=1+$sub2[1];
        $sql="Update schools Set sub2='$sub2[0],$currRate,$sub2[2],$sub2[3],$sub2[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S2==3)
+    else  if($S2==3)
    {
        $currRate=1+$sub2[2];
        $sql="Update schools Set sub2='$sub2[0],$sub2[1],$currRate,$sub2[3],$sub2[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S2==4)
+    else  if($S2==4)
    {
        $currRate=1+$sub2[3];
        $sql="Update schools Set sub2='$sub2[0],$sub2[1],$sub2[2],$currRate,$sub2[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S2==5)
+     else if($S2==5)
    {
        $currRate=1+$sub2[4];
        $sql="Update schools Set sub2='$sub2[0],$sub2[1],$sub2[2],$sub2[3],$currRate,' Where name='$name'";
@@ -169,25 +169,25 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
        $sql="Update schools Set sub3='$currRate,$sub3[1],$sub3[2],$sub3[3],$sub3[4],' Where name='$name'";
         $conn->query($sql);
    }
-        if($S3==2)
+      else  if($S3==2)
    {
        $currRate=1+$sub3[1];
        $sql="Update schools Set sub3='$sub3[0],$currRate,$sub3[2],$sub3[3],$sub3[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S3==3)
+    else  if($S3==3)
    {
        $currRate=1+$sub3[2];
        $sql="Update schools Set sub3='$sub3[0],$sub3[1],$currRate,$sub3[3],$sub3[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S3==4)
+    else  if($S3==4)
    {
        $currRate=1+$sub3[3];
        $sql="Update schools Set sub3='$sub3[0],$sub3[1],$sub3[2],$currRate,$sub3[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S3==5)
+    else  if($S3==5)
    {
        $currRate=1+$sub3[4];
        $sql="Update schools Set sub3='$sub3[0],$sub3[1],$sub3[2],$sub3[3],$currRate,' Where name='$name'";
@@ -200,25 +200,25 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
        $sql="Update schools Set sub4='$currRate,$sub4[1],$sub4[2],$sub4[3],$sub4[4],' Where name='$name'";
         $conn->query($sql);
    }
-        if($S4==2)
+      else  if($S4==2)
    {
        $currRate=1+$sub4[1];
        $sql="Update schools Set sub4='$sub4[0],$currRate,$sub4[2],$sub4[3],$sub4[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S4==3)
+     else if($S4==3)
    {
        $currRate=1+$sub4[2];
        $sql="Update schools Set sub4='$sub4[0],$sub4[1],$currRate,$sub4[3],$sub4[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S4==4)
+    else  if($S4==4)
    {
        $currRate=1+$sub4[3];
        $sql="Update schools Set sub4='$sub4[0],$sub4[1],$sub4[2],$currRate,$sub4[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S4==5)
+     else if($S4==5)
    {
        $currRate=1+$sub4[4];
        $sql="Update schools Set sub4='$sub4[0],$sub4[1],$sub4[2],$sub4[3],$currRate,' Where name='$name'";
@@ -231,25 +231,25 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
        $sql="Update schools Set sub5='$currRate,$sub5[1],$sub5[2],$sub5[3],$sub5[4],' Where name='$name'";
         $conn->query($sql);
    }
-        if($S5==2)
+      else  if($S5==2)
    {
        $currRate=1+$sub5[1];
        $sql="Update schools Set sub5='$sub5[0],$currRate,$sub5[2],$sub5[3],$sub5[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S5==3)
+     else if($S5==3)
    {
        $currRate=1+$sub5[2];
        $sql="Update schools Set sub5='$sub5[0],$sub5[1],$currRate,$sub5[3],$sub5[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S5==4)
+     else if($S5==4)
    {
        $currRate=1+$sub5[3];
        $sql="Update schools Set sub5='$sub5[0],$sub5[1],$sub5[2],$currRate,$sub5[4],' Where name='$name'";
         $conn->query($sql);
    }
-      if($S5==5)
+     else if($S5==5)
    {
        $currRate=1+$sub5[4];
        $sql="Update schools Set sub5='$sub5[0],$sub5[1],$sub5[2],$sub5[3],$currRate,' Where name='$name'";
