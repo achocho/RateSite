@@ -10,7 +10,6 @@
 
 </style>
 <?php
-
 include("creator.php");
 
 function FindFolder()
@@ -44,210 +43,208 @@ function FindFolder()
     }
  return $dirNames;
 }
-function FindAndUse(){
-    $currDesc=0;
-    $LastLoop=false;
-    $sizeDesc=count(description());
-    $descDirectory="";
-    $descDirectory="";
-       $DescIndex=0;
-    $PhotoIndex=0;
-    $firstDesc=true;
-    $dirs=FindFolder();
-    $dirSize=count($dirs);
-    $fullPath=array();
-        $types=array();
+function Filter()
+{
+    echo "<form method='get'>
+<select name='city'>
+<option value='null'>not choosen</option>
+<option value='Varna'>Varna</option>
+<option value='Plovdiv'>Plovdiv</option>
+<option value='Sofia'>Sofia</option>
+<option value='Burgas'>Burgas</option>
+</select><br>
+<select name='kind'>
+<option value='null'>not choosen</option>
+<option value='Sou'>Sou</option>
+<option value='professional'>professional</option>
+</select>
+<br>
+<input type='submit'>
+ </form>
+";
   
-    for($z=0;$z<$dirSize;$z++){
-         
-        $dir="";
-$dir    = "schools/$dirs[$z]";
-
-$files1 = scandir($dir);
-    $size=count($files1);
-   
-
- 
-   for($i=0;$i<$size;$i++)
-   {
-      
-       
-       if($files1[$i]=="logo.png"or$files1[$i]=="logo.jpg"){
-       array_push($types,$files1[$i]);
-           array_push($fullPath,$dir."/".$files1[$i]);
-       }
-     
-     
-   }
-    }
-    $sizer=count($fullPath);
-   
-   $FolderPath;
-    $currPath="";
-    $curr=0;
-   
-  
-    for($i=0;$i<strlen($fullPath[0]);$i++)
-    {
-        $tem=$fullPath[0];
-             if($curr!=2)
-            {
-                $currPath.=$tem[$i];
-            }
-            if($tem[$i]=='/')
-            {
-                $curr++;
-            }
-    }
-    for($i=0;$i<$sizer;$i++)
-    { 
-          
-        
-        $FolderPath="";
-    $Lines=0;
-        for($j=0;$j<strlen($fullPath[$i]);$j++)
-        {
-            $temp=$fullPath[$i];
-             if($Lines!=2)
-            {
-                $FolderPath.=$temp[$j];
-            }
-            if($temp[$j]=='/')
-            {
-                $Lines++;
-            }
-           
-        }
-       
-        if($currPath==$FolderPath){
-            addContent($currPath);
-               $lin=0;
-             $SchoolName="";
-            for($k=0;$k<strlen($currPath);$k++)
-            {
-             
-                if($currPath[$k]=="/")
-                {
-                    $lin++;
-                }
-                if($lin==1 and $currPath[$k]!="/")
-                {
-                  $SchoolName.=$currPath[$k];  
-                }
-            }
-           echo "<a href='$currPath"."content.php'>$SchoolName</a>";
-        echo "<br><img src='$fullPath[$i]'>";
-            
-            $PhotoIndex++;
-        }else
-        {
-         $PhotoIndex++;
-            $descDirectory="";
-            $descSize1=count(description());
-            $dirLines=0;
-            if($DescIndex<$descSize1){
-            
-                for($y1=0;$y1<strlen(description()[$DescIndex]);$y1++)
-                {
-                    $currDescription=description()[$DescIndex];
-                    if($currDescription[$y1]=="/")
-                    {
-                        $dirLines++;
-                    }
-                    if($dirLines<2)
-                    {
-                        $descDirectory.=$currDescription[$y1];
-                    }
-                }
-                
-            }
-        
-            echo "<br>";
-       $descDirectory.="/";
-        
-               if($currDesc<$sizeDesc and $currPath==$descDirectory){
-                echo "<p>".file_get_contents(description()[$currDesc])."</p>";
-            $currDesc++;
-                   $DescIndex++;
-            }
-        
-             $currPath=$FolderPath;
-            addContent($currPath);
-               $lin=0;
-             $SchoolName="";
-            for($k=0;$k<strlen($currPath);$k++)
-            {
-             
-                if($currPath[$k]=="/")
-                {
-                    $lin++;
-                }
-                if($lin==1 and $currPath[$k]!="/")
-                {
-                  $SchoolName.=$currPath[$k];  
-                }
-            }
-            
-              echo "<a href='$currPath"."content.php'>$SchoolName</a>";
-            echo "<br><img src='$fullPath[$i]'>";
-          
-            
-        
-        }
-    $FullPathSize=count($fullPath);
-        $lastElement=count(description())-1;
-    
-        if($PhotoIndex==$FullPathSize)
-        {
-        
-            $LastLoop=true;
-          
-        }
-       if($LastLoop)
-       {
-           
-          $descDirectory="";
-            $descSize1=count(description());
-            $dirLines=0;
-           $lastElement=count(description())-1;
-           
-            
-                for($y1=0;$y1<strlen(description()[$lastElement]);$y1++)
-                {
-                    $currDescription=description()[$lastElement];
-                    if($currDescription[$y1]=="/")
-                    {
-                        $dirLines++;
-                    }
-                    if($dirLines<2)
-                    {
-                        $descDirectory.=$currDescription[$y1];
-                    }
-                }
-               
-            
-        
-       }
-        $descDirectory.="/";
-
-          if($PhotoIndex==$FullPathSize and $currPath==$descDirectory)
-      {
-         
-                echo "<br><p>".file_get_contents(description()[$lastElement])."</p>";
-           
-            
-          
-      }
-      
-     
-       
-    
-        }
-  
-    
-   
 }
+function getParameters()
+{
+        $filterFiles=array();
+    $dirs=FindFolder();
+    for($i=0;$i<count($dirs);$i++)
+    {
+        $dir="schools/$dirs[$i]";
+        $file=scandir($dir);
+    
+       for($j=0;$j<count($file);$j++)
+       {
+           if($file[$j]=="filter.txt")
+           {
+               
+           array_push($filterFiles,$dir."/".$file[$j]);
+           }
+        
+       }
+        
+    }
+    return $filterFiles;
+}
+function FindAndUse(){
+    Filter();
+    $cities=array();
+    $Kind=array();
+    
+      if($_SERVER['REQUEST_METHOD']=="GET" and isset($_GET['city']) or isset($_GET['kind'])){
+          $city=$_GET['city'];
+          $kind=$_GET['kind'];
+          $current="";
+          $dots=0;
+          $line=0;
+            
+            for($i=0;$i<count(getParameters());$i++)
+    {
+        $Key="";
+        $Value="";
+        $type="";
+               
+        $current=file_get_contents(getParameters()[$i]);
+            
+                for($j=0;$j<strlen($current);$j++){
+                    
+                if($current[$j]==":")
+                {
+                    $dots++;
+                }
+                   if($current[$j]=="-")
+                   {
+                       $line++;
+                   } 
+                if($dots==0 and $line==0)
+                {
+                    $type.=$current[$j];
+                   
+                }
+                    if($dots==0 and $line==1 && $current[$j]!="-" )
+                {
+                    $Key.=$current[$j];
+                }
+                if($dots==1 and $line==1 and $current[$j]!=":" and $current[$j]!=";")
+                {
+                        $Value.=$current[$j];
+                }
+            
+                if($current[$j]==";")
+                {
+                   
+                    if( $Value==$city and $type=="city"){
+                    $cities[]=$Key;
+                      
+                    }
+                    if($Value==$kind and $type=="kind")
+                    {
+                        
+                        $Kind[]=$Key;
+                          
+                    }
+                    $Value="";
+                    $type="";
+                    $Key="";
+                  $dots=0;
+                 $line=0;
+                 
+                }
+                }
+    }
+    
+ if(count($cities)==0 &&$city!="null")
+ {
+     $cities[]="null";
+ }
+    if(count($Kind)==0 &&$kind!="null")
+ {
+     $Kind[]="null";
+ }
+        
+      
+  
+        
+    }
 
+if(count($cities)==0 and count($Kind)==0) {
+$dirs=FindFolder();
+    for($i=0;$i<count($dirs);$i++)
+    {
+        $dir="schools/$dirs[$i]";
+        addContent($dir);
+        $name=$dirs[$i];
+         $content="$dir/content.php";
+        $description="$dir/description.txt";
+        $logo="$dir/logo.png";
+      echo "<a href='$content'>$name</a><br>";
+             if(file_exists($logo)){
+             echo "<img src='$logo'><br>";
+             }else
+             {
+               echo "<img src='$dir/logo.jpg'><br>";  
+             }
+             if(file_exists($description)){
+             echo file_get_contents($description)."<br>";
+             }
+    }
+    
+  
+
+}
+    else
+    {
+         $dirs=FindFolder();
+        $KindSize=count($Kind);
+        $CitySize=count($cities);
+        $found=false;
+        if($KindSize==0)
+        {
+            $Kind=$cities;
+        }
+        else if($CitySize==0)
+        {
+            $cities=$Kind;
+        }
+    for($i=0;$i<count($dirs);$i++)
+    {
+          
+        $dir="schools/$dirs[$i]";
+        $content="$dir/content.php";
+       $name=$dirs[$i];
+        $SchoolName="";
+        $logo=$dir."/logo.png";
+      
+        $description=$dir."/description.txt";
+     for($j=0;$j<count($cities);$j++)
+     {
+       for($z=0;$z<count($Kind);$z++){
+         if($cities[$j]==$name and $Kind[$z]==$name )
+         {
+          $found=true;
+             echo "<a href='$content'>$name</a><br>";
+             if(file_exists($logo)){
+             echo "<img src='$logo'>";
+             }else
+             {
+               echo "<img src='$dir/logo.jpg'><br>";  
+             }
+             if(file_exists($description)){
+             echo file_get_contents($description)."<br>";
+             }
+             }
+         
+     }
+     }
+    }
+        if($found==false)
+        {
+            echo "Not Found";
+        }
+    }
+ 
+    
+}
 function description(){
     $dirs=FindFolder();
     $dirSize=count($dirs);
@@ -281,3 +278,5 @@ $files1 = scandir($dir);
     return $fullPath;
 }
     ?>
+
+
