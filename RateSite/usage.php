@@ -73,14 +73,14 @@ function Filter()
     echo '
 <form method="get">
 <select name="city">
-<option value="null"', (isset($_GET['city']) && $_GET['city']=="null" ? ' selected="selected" ' : ''), '>city</option> 
+<option value="null"', (isset($_GET['city']) && $_GET['city']=="null" ? ' selected="selected" ' : ''), '>no filter</option> 
 <option value="Varna"', (isset($_GET['city']) && $_GET['city']=="Varna" ? ' selected="selected" ' : ''), '>Varna</option> 
 <option value="Sofia"', (isset($_GET['city']) && $_GET['city']=="Sofia" ? ' selected="selected" ' : ''), '>Sofia</option> 
 <option value="Burgas"', (isset($_GET['city']) && $_GET['city']=="Burgas" ? ' selected="selected" ' : ''), '>Burgas</option> 
 <option value="Plovdiv"', (isset($_GET['city']) && $_GET['city']=="Plovdiv" ? ' selected="selected" ' : ''), '>Plovdiv</option> 
 </select>
 <select name="kind">
-<option value="null"', (isset($_GET['kind']) && $_GET['kind']=="null" ? ' selected="selected" ' : ''), '>kind</option> 
+<option value="null"', (isset($_GET['kind']) && $_GET['kind']=="null" ? ' selected="selected" ' : ''), '>no filter</option> 
 <option value="Sou"', (isset($_GET['kind']) && $_GET['kind']=="Sou" ? ' selected="selected" ' : ''), '>Sou</option> 
 <option value="professional"', (isset($_GET['kind']) && $_GET['kind']=="professional" ? ' selected="selected" ' : ''), '>professional</option> 
 </select>

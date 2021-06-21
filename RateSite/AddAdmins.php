@@ -1,5 +1,6 @@
 <?php
 $row=0;
+echo "<a href='index.php'>Go to main page</a><br>";
 include("functions.php");
 if($_SERVER['REQUEST_METHOD']=="POST"){
     $username=$_POST['username'];
