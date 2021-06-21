@@ -7,7 +7,7 @@
          width: 100px;
         height: 100px;
     }
-
+ 
 </style>
 <?php
 include("creator.php");
@@ -43,27 +43,7 @@ function FindFolder()
     }
  return $dirNames;
 }
-function Filter()
-{
-    echo "<form method='get'>
-<select name='city'>
-<option value='null'>not choosen</option>
-<option value='Varna'>Varna</option>
-<option value='Plovdiv'>Plovdiv</option>
-<option value='Sofia'>Sofia</option>
-<option value='Burgas'>Burgas</option>
-</select><br>
-<select name='kind'>
-<option value='null'>not choosen</option>
-<option value='Sou'>Sou</option>
-<option value='professional'>professional</option>
-</select>
-<br>
-<input type='submit'>
- </form>
-";
-  
-}
+
 function getParameters()
 {
         $filterFiles=array();
@@ -86,14 +66,38 @@ function getParameters()
     }
     return $filterFiles;
 }
+function Filter()
+{
+   
+    
+    echo '
+<form method="get">
+<select name="city">
+<option value="null"', (isset($_GET['city']) && $_GET['city']=="null" ? ' selected="selected" ' : ''), '>city</option> 
+<option value="Varna"', (isset($_GET['city']) && $_GET['city']=="Varna" ? ' selected="selected" ' : ''), '>Varna</option> 
+<option value="Sofia"', (isset($_GET['city']) && $_GET['city']=="Sofia" ? ' selected="selected" ' : ''), '>Sofia</option> 
+<option value="Burgas"', (isset($_GET['city']) && $_GET['city']=="Burgas" ? ' selected="selected" ' : ''), '>Burgas</option> 
+<option value="Plovdiv"', (isset($_GET['city']) && $_GET['city']=="Plovdiv" ? ' selected="selected" ' : ''), '>Plovdiv</option> 
+</select>
+<select name="kind">
+<option value="null"', (isset($_GET['kind']) && $_GET['kind']=="null" ? ' selected="selected" ' : ''), '>kind</option> 
+<option value="Sou"', (isset($_GET['kind']) && $_GET['kind']=="Sou" ? ' selected="selected" ' : ''), '>Sou</option> 
+<option value="professional"', (isset($_GET['kind']) && $_GET['kind']=="professional" ? ' selected="selected" ' : ''), '>professional</option> 
+</select>
+<input type="submit">
+ </form>   
+';
+
+}
 function FindAndUse(){
-    Filter();
+   Filter();
     $cities=array();
     $Kind=array();
     
       if($_SERVER['REQUEST_METHOD']=="GET" and isset($_GET['city']) or isset($_GET['kind'])){
           $city=$_GET['city'];
           $kind=$_GET['kind'];
+   
           $current="";
           $dots=0;
           $line=0;
