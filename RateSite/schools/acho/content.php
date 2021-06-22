@@ -180,6 +180,11 @@ echo "<button id='button' type='button' name='submit' onclick='ts()' >Submit</bu
 echo "</form>";
 echo "<p class=doPHP></p>";
 echo "<body>";
+echo "<form method='post'>";
+
+echo"<textarea id='comment' name='comment' placeholder='Comment...'></textarea>";
+echo " <button type='button' onclick='comm()'>Add Comment</button>";
+echo "</form>";
 ?>
 <html>
     <body>
@@ -206,6 +211,26 @@ $.ajax({
   });
     
     }
+         function comm(){
+         var value1=$("textarea[name='comment']").val();
+     
+            if(value1=="")
+               {
+               alert("Enter comment");
+                   location.reload();
+                  return;
+               }
+$.ajax({
+     url: "addComment.php",
+  method: "POST",
+  data: { test1: value1 }
+})
+  .done(function( response ) {
+    $("p.doPHP").html(response);
+  });
+    
+    }
         </script>
+        
     </body>
 </html>

@@ -228,7 +228,7 @@ $dirs=FindFolder();
           $found=true;
              echo "<a href='$content'>$name</a><br>";
              if(file_exists($logo)){
-             echo "<img src='$logo'>";
+             echo "<img src='$logo'><br>";
              }else
              {
                echo "<img src='$dir/logo.jpg'><br>";  

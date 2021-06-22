@@ -6,7 +6,6 @@ include("usage.php");
 $user_data=check_login($con);
 
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,25 +13,14 @@ $user_data=check_login($con);
     <title>My Website</title>
     </head>
 <body >
-   <link rel="stylesheet" type="text/css" href="style_home.css">
-   
-    <header>
-     <div class="wrapper">
-        <h1>Test</h1>
-        <nav>
+       <nav>
            <ul>           
              <a href="logout.php" style="text-decoration: none;">Log out</a>
            </ul>
       </nav>
-     </div>
-   </header>
-
-   <div id="pic/slide-01.jpg" class="imgHome">
-    <div class="wrapper1">
-        <h2><strong>Kyr</strong><br/></h2>
-        <a href="#" class="button-1" style="text-decoration: none;">Read more</a>
-    </div>
-   </div>
+    
+        <h1>Main Page</h1>
+   
     
     <style>
         .par
@@ -50,7 +38,15 @@ $user_data=check_login($con);
 <?php
     FindAndUse();
   
-    
+   
 ?>
+    <?php
+    class name
+    {
+        function getName(){
+        return $user_data['user_name'];
+        }
+    }
+    ?>
     </body>
 </html>
