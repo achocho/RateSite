@@ -4,6 +4,9 @@ function addContent($directory)
     $file=fopen($directory."/content.php","w");
     $file1=fopen($directory."/insertion.php","w");
    $file2=fopen($directory."/addComment.php","w");
+    if(!file_exists($directory."/comments.txt")){
+    $file3=fopen($directory."/comments.txt","w");
+    }
    $content=file_get_contents("content.txt");
     $content1=file_get_contents("insertion.txt");
     $content2=file_get_contents("addComment.txt");
