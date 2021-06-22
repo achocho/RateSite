@@ -180,14 +180,61 @@ echo "<button id='button' type='button' name='submit' onclick='ts()' >Submit</bu
 echo "</form>";
 echo "<p class=doPHP></p>";
 echo "<body>";
-echo "<form method='post'>";
+?>
+<textarea disabled='disabled' rows='10' cols='50' ><?php 
+            $name=array();
+            $comm=array();
+            $Name="";
+            $Comm="";
+            $all=file_get_contents("comments.txt");
+            $dots=0;
+            $semi=0;
+            for($i=0;$i<strlen($all);$i++)
+            {
+                if($all[$i]==":")
+                {
+                    $dots++;
+                }
+                if($all[$i]==";")
+                {
+                    $semi++;
+                }
+                if($dots==0 && $all[$i]!=":")
+                {
+                    $Name.=$all[$i];
+                }
+                if($dots==1 and $semi==0 and $all[$i]!=";"and $all[$i]!=":")
+                {
+                   $Comm.=$all[$i];
+                }
+                if($dots==1 and $semi==1)
+                {
+                    $name[]=$Name;
+                    $comm[]=$Comm;
+                    $Name="";
+                    $Comm="";
+                    $dots=0;
+                    $semi=0;
+                }
+               
+            }
+            for($i=0;$i<count($name);$i++)
+            {
+                echo $name[$i].":".$comm[$i]."\n";
+            }
+       
+            ?>
+        </textarea>
+<?php
 
+echo "<form method='post'>";
 echo"<textarea id='comment' name='comment' placeholder='Comment...'></textarea>";
 echo " <button type='button' onclick='comm()'>Add Comment</button>";
 echo "</form>";
 ?>
 <html>
     <body>
+        
     <script>
         function ts(){
          var value1 = $("input[name='test1']:checked").val();

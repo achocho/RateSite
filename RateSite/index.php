@@ -21,7 +21,7 @@ $user_data=check_login($con);
     
         <h1>Main Page</h1>
    
-    
+  
     <style>
         .par
         {
