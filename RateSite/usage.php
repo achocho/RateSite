@@ -90,6 +90,7 @@ function Filter()
 
 }
 function FindAndUse(){
+    $conn=new mysqli("localhost","root","","login");
    Filter();
     $cities=array();
     $Kind=array();
@@ -98,64 +99,18 @@ function FindAndUse(){
           $city=$_GET['city'];
           $kind=$_GET['kind'];
    
-          $current="";
-          $dots=0;
-          $line=0;
-            
-            for($i=0;$i<count(getParameters());$i++)
-    {
-        $Key="";
-        $Value="";
-        $type="";
-               
-        $current=file_get_contents(getParameters()[$i]);
-            
-                for($j=0;$j<strlen($current);$j++){
-                    
-                if($current[$j]==":")
-                {
-                    $dots++;
-                }
-                   if($current[$j]=="-")
-                   {
-                       $line++;
-                   } 
-                if($dots==0 and $line==0)
-                {
-                    $type.=$current[$j];
-                   
-                }
-                    if($dots==0 and $line==1 && $current[$j]!="-" )
-                {
-                    $Key.=$current[$j];
-                }
-                if($dots==1 and $line==1 and $current[$j]!=":" and $current[$j]!=";")
-                {
-                        $Value.=$current[$j];
-                }
-            
-                if($current[$j]==";")
-                {
-                   
-                    if( $Value==$city and $type=="city"){
-                    $cities[]=$Key;
-                      
-                    }
-                    if($Value==$kind and $type=="kind")
-                    {
-                        
-                        $Kind[]=$Key;
-                          
-                    }
-                    $Value="";
-                    $type="";
-                    $Key="";
-                  $dots=0;
-                 $line=0;
-                 
-                }
-                }
-    }
+ if ($result = $conn -> query("SELECT * FROM schools Where city='$city'")) {
+  while($row=$result->fetch_assoc())
+  {
+   $cities[]=$row['name'];
+  }
+}
+          if ($result = $conn -> query("SELECT * FROM schools Where SchoolType='$kind'")) {
+  while($row=$result->fetch_assoc())
+  {
+   $Kind[]=$row['name'];
+  }
+}
     
  if(count($cities)==0 &&$city!="null")
  {
@@ -228,7 +183,7 @@ $dirs=FindFolder();
           $found=true;
              echo "<a href='$content'>$name</a><br>";
              if(file_exists($logo)){
-             echo "<img src='$logo'><br>";
+             echo "<img src='$logo'>";
              }else
              {
                echo "<img src='$dir/logo.jpg'><br>";  

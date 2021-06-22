@@ -22,14 +22,18 @@ if(isset($_POST["submit"])) {
   if(is_dir($dir)==false){
     
 mkdir($dir);
-$filterDir=fopen($filter,"w");
+      $con=new mysqli("localhost","root","","login");
+ $query="Insert into schools(name,city,SchoolType,sub1,sub2,sub3,sub4,sub5) values('$schoolName','$location','$kind','0,0,0,0,0,','0,0,0,0,0,','0,0,0,0,0,','0,0,0,0,0,','0,0,0,0,0,')";
+    mysqli_query($con,$query);
 $descDir=fopen($descFile,"w");
-      fwrite($filterDir,"city-$schoolName:$location;kind-$schoolName:$kind;");
+     
       fwrite($descDir,$description);
       
 }else
   {
+      
       echo "The school already exists";
+      return;
   }
 }
 $target_dir = $dir."/";
