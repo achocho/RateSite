@@ -3,6 +3,7 @@
         width:100px;
         height:100px;
     }
+    p { word-break: break-all; }
 </style>
 <?php
 if (!isset($_SESSION)) {
@@ -181,19 +182,32 @@ echo "</form>";
 echo "<p class=doPHP></p>";
 echo "<body>";
 ?>
-<textarea disabled='disabled' rows='10' cols='50' ><?php 
+<p><?php 
     $schoolName=basename(__DIR__);
 if ($result = $conn -> query("SELECT * FROM comments Where SchoolName='$schoolName'")) {
   while($row=$result->fetch_assoc())
   {
      $temp1=$row["username"]; 
       $temp2=$row["comment"]; 
-     
-    echo $temp1.":".$temp2."\n";
+     $temp3=$row['date'];
+      $currentDate="";
+      $space=0;
+      for($i=0;$i<strlen($temp3);$i++)
+      {
+          if($temp3[$i]==" ")
+          {
+              $space++;
+          }
+          if($space==0 && $temp3[$i]!=" ")
+          {
+              $currentDate.=$temp3[$i];
+          }
+      }
+    echo $currentDate.":"."<b>".$temp1."</b>".":".$temp2."<br>";
   }
 }
     ?>
-        </textarea>
+        </p>
 <?php
 
 echo "<form method='post'>";
